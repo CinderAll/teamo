@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Para minha Cerejinha 🍒</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, #071a12, #2b0000);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* partículas */
+body::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#8b0000 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.2;
+    animation: move 30s linear infinite;
+}
+
+@keyframes move {
+    from { transform: translate(0,0); }
+    to { transform: translate(-200px, -200px); }
+}
+
+.container {
+    text-align: center;
+    padding: 30px;
+}
+
+h1 {
+    color: #ff4d6d;
+}
+
+button {
+    background: #4b0000;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #8b0000;
+    transform: scale(1.05);
+}
+
+.hidden { display: none; }
+
+.typing {
+    border-right: 2px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+}
+
+/* contador */
+#tempo {
+    font-size: 20px;
+    color: #90ee90;
+}
+
+/* final */
+#final {
+    font-size: 45px;
+    color: #ff4d6d;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1);}
+    50% { transform: scale(1.2);}
+    100% { transform: scale(1);}
+}
+
+/* corações */
+.heart {
+    position: fixed;
+    color: red;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh);}
+    to { transform: translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Oi, minha Cerejinha 🍒</h1>
+
+<p id="typing"></p>
+
+<button onclick="next('historia')">Começar</button>
+
+<div id="historia" class="hidden">
+<h2>Nossa História 🌱</h2>
+
+<p>
+A gente começou de um jeito simples… três meses antes de tudo realmente começar.  
+E mesmo sem saber, já fazia 11 meses que o universo tava preparando a gente.
+</p>
+
+<p>
+Dia 17/07/2025 não foi só um dia.  
+Foi o dia que eu passei a chamar você de minha.
+</p>
+
+<p>
+E desde então… tudo floresceu.  
+Como se meu coração tivesse virado terra fértil só porque você existe.
+</p>
+
+<button onclick="next('sobre')">Continuar</button>
+</div>
+
+<div id="sobre" class="hidden">
+<h2>Você 💚</h2>
+
+<p>
+Giovanna… 23 anos, libriana…  
+com 1,52 de pura perfeição compactada.
+</p>
+
+<p>
+Seus olhos marrons brilham de um jeito que eu nunca vi…  
+e esse seu jeitinho com sotaque mineiro (mesmo não sendo 😏) me desmonta.
+</p>
+
+<p>
+Minha Cerejinha…  
+porque você é linda… e porque parece um tomatinho cereja 🍅❤️
+</p>
+
+<button onclick="next('sobre2')">E eu?</button>
+</div>
+
+<div id="sobre2" class="hidden">
+<h2>Eu 💙</h2>
+
+<p>
+Cintia… 25 anos, escorpiana…  
+um caos organizado que encontrou paz em você.
+</p>
+
+<p>
+Entre livros, códigos e meus gatinhos Zeus e Atena…  
+foi você que virou meu capítulo favorito.
+</p>
+
+<p>
+Você me fez querer ser melhor…  
+todos os dias.
+</p>
+
+<button onclick="next('contador')">Nosso tempo</button>
+</div>
+
+<div id="contador" class="hidden">
+<h2>Nosso tempo ⏳</h2>
+<p id="tempo"></p>
+
+<button onclick="next('motivos')">Por quê?</button>
+</div>
+
+<div id="motivos" class="hidden">
+<h2>Por que te amo 🌿</h2>
+
+<p>Porque você me acalma</p>
+<p>Porque você me transforma</p>
+<p>Porque com você… o mundo desacelera</p>
+<p>Porque você é minha casa</p>
+
+<button onclick="senha()">Área secreta 🔐</button>
+</div>
+
+<div id="senha" class="hidden">
+<p>Digite nossa data 💭</p>
+<input id="input">
+<button onclick="check()">Entrar</button>
+</div>
+
+<div id="secreto" class="hidden">
+<h2>Carta 💌</h2>
+
+<p>
+Eu amo você de um jeito que nem sei explicar…  
+é como se eu tivesse aprendido agronomia só pra entender  
+como você consegue florescer dentro de mim todos os dias 🌱
+</p>
+
+<p>
+Meu sonho é simples…  
+terminar nossas faculdades…  
+te ver realizada…  
+e um dia dividir a vida com você… de verdade.
+</p>
+
+<p>
+Morar juntas… rir juntas… viver juntas…  
+e se Deus quiser… casar com você.
+</p>
+
+<button onclick="final()">Última coisa</button>
+</div>
+
+<div id="final" class="hidden">
+TE AMO DEMAIS DA CONTA ❤️
+</div>
+
+</div>
+
+<script>
+// digitação
+let text = "Acessando sistema... desbloqueando memórias da Cintia e da Cerejinha 💻❤️";
+let i = 0;
+function typing(){
+ if(i<text.length){
+  document.getElementById("typing").innerHTML += text[i];
+  i++;
+  setTimeout(typing,40);
+ }
+}
+typing();
+
+// navegação
+function next(id){
+ document.getElementById(id).classList.remove("hidden");
+}
+
+// contador
+const start = new Date("2025-07-17");
+setInterval(()=>{
+ let now = new Date();
+ let diff = now - start;
+
+ let days = Math.floor(diff/(1000*60*60*24));
+ document.getElementById("tempo").innerHTML =
+ days + " dias juntas 💕";
+},1000);
+
+// senha
+function senha(){
+ document.getElementById("senha").classList.remove("hidden");
+}
+
+function check(){
+ let v = document.getElementById("input").value;
+ if(v=="1707"){
+  document.getElementById("secreto").classList.remove("hidden");
+ } else {
+  alert("tenta de novo 👀");
+ }
+}
+
+// final
+function final(){
+ document.getElementById("final").classList.remove("hidden");
+}
+
+// corações
+setInterval(()=>{
+ let heart = document.createElement("div");
+ heart.className="heart";
+ heart.innerHTML="❤️";
+ heart.style.left=Math.random()*100+"vw";
+ document.body.appendChild(heart);
+ setTimeout(()=>heart.remove(),5000);
+},500);
+
+// easter egg
+document.body.addEventListener("dblclick",()=>{
+ alert("Eu te amo mais do que qualquer código consegue explicar 💻❤️");
+});
+</script>
+
+</body>
+</html>
